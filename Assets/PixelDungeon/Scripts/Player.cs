@@ -44,54 +44,54 @@ namespace PixelDungeon
 
             if (h == 0 && v == 0)
             {
-                _anim.SetBool("run", false);
+                //_anim.SetBool("run", false);
             }
             else
             {
-                _anim.SetBool("run", true);
+                //_anim.SetBool("run", true);
             }
 
 
-            //Move(h, v);
+            Move(h, v);
             Flip(h);
         }
 
 
-        void Update()
-        {
-            if( Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                MoveByGrid(-1, 0);
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                MoveByGrid(1, 0);
-            }
-            else if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                MoveByGrid(0, 1);
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                MoveByGrid(0, -1);
-            }
-            else if( Input.GetKeyDown(KeyCode.Home))
-            {
-                MoveByGrid(-1, 1);
-            }
-            else if (Input.GetKeyDown(KeyCode.PageUp))
-            {
-                MoveByGrid(1, 1);
-            }
-            else if (Input.GetKeyDown(KeyCode.End))
-            {
-                MoveByGrid(-1, -1);
-            }
-            else if (Input.GetKeyDown(KeyCode.PageDown))
-            {
-                MoveByGrid(1, -1);
-            }
-        }
+        //void Update()
+        //{
+        //    if( Input.GetKeyDown(KeyCode.LeftArrow))
+        //    {
+        //        MoveByGrid(-1, 0);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.RightArrow))
+        //    {
+        //        MoveByGrid(1, 0);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.UpArrow))
+        //    {
+        //        MoveByGrid(0, 1);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.DownArrow))
+        //    {
+        //        MoveByGrid(0, -1);
+        //    }
+        //    else if( Input.GetKeyDown(KeyCode.Home))
+        //    {
+        //        MoveByGrid(-1, 1);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.PageUp))
+        //    {
+        //        MoveByGrid(1, 1);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.End))
+        //    {
+        //        MoveByGrid(-1, -1);
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.PageDown))
+        //    {
+        //        MoveByGrid(1, -1);
+        //    }
+        //}
 
         void MoveByGrid(int h, int v)
         {
