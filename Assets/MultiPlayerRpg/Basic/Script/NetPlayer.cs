@@ -9,6 +9,7 @@ public class NetPlayer : NetworkBehaviour
 {
     public float _speed = 5.0f;
     Rigidbody2D _rigid;
+    SpriteRenderer _spriteR;
 
     // 캐릭터 머리 위 이름(3D텍스트)
     [SerializeField] TextMesh _txt_Name;
@@ -16,6 +17,8 @@ public class NetPlayer : NetworkBehaviour
     //동기화 변수(SyncVar) 대괄호[]를 어트리뷰트 라고 한다
     [SyncVar(hook = nameof(OnNameChanged))]
     public string _playerName;
+    [SyncVar(hook = nameof(OnColorChanged))]
+    public Color _playerColor;
 
     void OnNameChanged(string oldName, string newName)
     {
@@ -24,11 +27,18 @@ public class NetPlayer : NetworkBehaviour
         _txt_Name.text = newName;
         Debug.Log("OnNameChanged " + _playerName);
     }
+    void OnColorChanged(Color oldColor, Color newColor)
+    {
+        if (_spriteR == null)
+            _spriteR = GetComponent<SpriteRenderer>();
+        _spriteR.color = newColor;
+    }
     [Command]
-    void CmdSetUpPlayer(string name)
+    void CmdSetUpPlayer(string name, Color color)
     {
         Debug.Log("CmdSetUpPlayer " + _playerName);
         _playerName = name;
+        _playerColor = color;
     }
 
     private void Start()
@@ -37,6 +47,8 @@ public class NetPlayer : NetworkBehaviour
             Debug.LogError("_rigid is Null");
         if (!transform.Find("Info/Txt_Name").TryGetComponent(out _txt_Name))
             Debug.LogError("_txt_Name is Null");
+        if (!TryGetComponent(out _spriteR))
+            Debug.LogError("_spriteR is Null");
     }
 
     public override void OnStartLocalPlayer()
@@ -53,7 +65,7 @@ public class NetPlayer : NetworkBehaviour
         InputField inputName = UIManager.I.transform.Find("InputName").GetComponent<InputField>();
         
         // 서버(호스트)에 생성된 이름을 알리기, 커맨드함수 호출
-        CmdSetUpPlayer(inputName.text);
+        CmdSetUpPlayer(inputName.text, UIManager.I.GetColor());
     }
     private void Update()
     {
