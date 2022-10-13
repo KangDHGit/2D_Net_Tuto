@@ -43,6 +43,12 @@ public class NetPlayer : NetworkBehaviour
         // Canvas 아래 UI_Chat에 있는 동기화 변수, _str_status에 메세지를 넣기
         UIManager.I._UI_Chat._str_status = "플레이어 " + _playerName + " 님이 입장하셨습니다.";
     }
+    [Command]
+    public void CmdSendChatMessage(string msg)
+    {
+        Debug.Log("서버가 챗 메세지를 받았습니다" + msg);
+        UIManager.I._UI_Chat._str_status = msg;
+    }    
 
     private void Start()
     {
@@ -58,6 +64,8 @@ public class NetPlayer : NetworkBehaviour
     {
         base.OnStartLocalPlayer();
 
+        UIManager.I._UI_Chat._player = this;
+
         // 카메라 팔로우 스크립트를 붙이기
         NetCamera2DFollow camFollow = Camera.main.gameObject.AddComponent<NetCamera2DFollow>();
         camFollow.target = transform;
@@ -70,6 +78,18 @@ public class NetPlayer : NetworkBehaviour
         // 서버(호스트)에 생성된 이름을 알리기, 커맨드함수 호출
         CmdSetUpPlayer(inputName.text, UIManager.I.GetColor());
     }
+    public override void OnStopLocalPlayer()
+    {
+        NetCamera2DFollow camFollow = Camera.main.gameObject.GetComponent<NetCamera2DFollow>();
+        if (camFollow != null)
+        {
+            if (camFollow.target.Equals(transform))
+            {
+                Destroy(camFollow);
+            }
+        }
+    }
+
     private void Update()
     {
         if (isLocalPlayer)

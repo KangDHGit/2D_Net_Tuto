@@ -116,7 +116,7 @@ TextMesh:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323307491061073461}
   m_Text: "\uCE90\uB9AD\uD130 \uC774\uB984"
-  m_OffsetZ: 0
+  m_OffsetZ: -1
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 4
@@ -188,7 +188,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9bb5293eac02a5741958f2bcbbee2bf5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -356,3 +356,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   _speed: 5
+  _txt_Name: {fileID: 0}
+  _playerName: 
+  _playerColor: {r: 0, g: 0, b: 0, a: 0}
