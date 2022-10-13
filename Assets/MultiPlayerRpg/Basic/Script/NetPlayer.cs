@@ -39,6 +39,9 @@ public class NetPlayer : NetworkBehaviour
         Debug.Log("CmdSetUpPlayer " + _playerName);
         _playerName = name;
         _playerColor = color;
+
+        // Canvas 아래 UI_Chat에 있는 동기화 변수, _str_status에 메세지를 넣기
+        UIManager.I._UI_Chat._str_status = "플레이어 " + _playerName + " 님이 입장하셨습니다.";
     }
 
     private void Start()

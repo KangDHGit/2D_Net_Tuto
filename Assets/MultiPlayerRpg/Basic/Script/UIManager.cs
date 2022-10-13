@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager I;
+    UI_Chat _ui_Chat; public UI_Chat _UI_Chat { get { return _ui_Chat; } }
     [SerializeField] Slider _silder_R;
     [SerializeField] Slider _silder_G;
     [SerializeField] Slider _silder_B;
     [SerializeField] Image _img_Color;
     private void Awake()
     {
-        I = this;   
+        I = this;
+        _ui_Chat = transform.Find("UI_Chat").GetComponent<UI_Chat>();
     }
 
     private void Start()
