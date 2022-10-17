@@ -9,6 +9,9 @@ public class NetMob : NetworkBehaviour
 
     Vector3 _startPos;
     Color _orignColor;
+
+    [SyncVar]
+    public int _hp = 100;
     private void Start()
     {
         if(TryGetComponent(out _spRen))
@@ -35,6 +38,7 @@ public class NetMob : NetworkBehaviour
     {
         if (isServer)
         {
+            _hp -= 10;
             if (collision.gameObject.TryGetComponent(out NetPlayer player))
                 Debug.Log(player._playerName);
 
