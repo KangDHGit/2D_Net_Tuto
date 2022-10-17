@@ -37,3 +37,8 @@
  3) 클라이언트들에 있는 hook이 호출됨
 
 렌터큐 > Sorting Layer / Order in Layer
+
+10. 몬스터 위치 동기화
+ 1)Network Transform 컨포넌트 필요 Client Authority 체크 해제(서버에서만 권한을 가진다)
+11. 몬스터 히트 효과
+ 1)서버에서만 처리 [ClientRpc] 어트리뷰트 활용
